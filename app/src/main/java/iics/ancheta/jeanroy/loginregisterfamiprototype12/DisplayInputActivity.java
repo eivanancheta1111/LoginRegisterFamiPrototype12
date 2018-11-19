@@ -1,5 +1,6 @@
 package iics.ancheta.jeanroy.loginregisterfamiprototype12;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -121,7 +122,8 @@ public class DisplayInputActivity extends AppCompatActivity {
         SignoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent newActivity = new Intent(DisplayInputActivity.this,LoginActivity.class);
+                startActivity(newActivity);
 
             }
         });
@@ -131,7 +133,8 @@ public class DisplayInputActivity extends AppCompatActivity {
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent newActivity = new Intent(DisplayInputActivity.this,MainMenuActivity.class);
+                startActivity(newActivity);
 
             }
         });

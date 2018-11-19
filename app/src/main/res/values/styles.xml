@@ -8,6 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!--<style name="MyTextStyle" parent="@android:style/Widget.Text<code>View</code>" >
+        <item name="android:textColor">#FF0000</item>
+        <item name="android:textSize">14sp</item>
+    </style>-->
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

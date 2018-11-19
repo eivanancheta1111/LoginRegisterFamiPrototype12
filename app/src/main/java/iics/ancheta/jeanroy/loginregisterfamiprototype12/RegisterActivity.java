@@ -2,8 +2,6 @@ package iics.ancheta.jeanroy.loginregisterfamiprototype12;
 
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
@@ -36,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     SqliteHelper sqliteHelper;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         sqliteHelper = new SqliteHelper(this);
@@ -56,12 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
                         //Email does not exist now add new user to database
                         sqliteHelper.addUser(new User(null, UserName, Email, Password));
                         Snackbar.make(buttonRegister, "User created successfully! Please Login ", Snackbar.LENGTH_LONG).show();
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                finish();
-                            }
-                        }, Snackbar.LENGTH_LONG);
+
                     }else {
 
                         //Email exists with email input provided so show error user already exist

@@ -1,10 +1,14 @@
 package iics.ancheta.jeanroy.loginregisterfamiprototype12;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.Spanned;
@@ -12,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * working Login and Register???
@@ -28,6 +33,10 @@ public class LoginActivity extends AppCompatActivity {
 
     //Declaration Button
     Button buttonLogin;
+    Button buttonRememberMe;
+
+    //Declaration TextView
+    TextView saveText;
 
     //Declaration SqliteHelper
     SqliteHelper sqliteHelper;
@@ -57,11 +66,20 @@ public class LoginActivity extends AppCompatActivity {
 
                     //Check Authentication is successful or not
                     if (currentUser != null) {
-                        Snackbar.make(buttonLogin, "Successfully Logged in!", Snackbar.LENGTH_LONG).show();
+                        //Snackbar.make(buttonLogin, "Successfully Logged in!", Snackbar.LENGTH_LONG).show();
+                        Cursor res = sqliteHelper.getUsername(Email);
+
+                        StringBuffer buffer = new StringBuffer();
+                        while (res.moveToNext()){
+                            buffer.append("" + res.getString(0));
+                        }
+                        String StoredUsername = buffer.toString();
+
 
                         //User Logged in Successfully Launch You home screen activity
-                        //Intent intent = new Intent(LoginActivity.this,MainMenuActivity.class);
-                        //startActivity(intent);
+                        Intent intent = new Intent(LoginActivity.this,MainMenuActivity.class);
+                        intent.putExtra("TransferredUsername",  StoredUsername);
+                        startActivity(intent);
                         //finish();
                     } else {
 
@@ -146,5 +164,65 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 
+    /**public void ViewAll(){
+        btnViewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Cursor res = sqliteHelper.getAllData();
+                if(res.getCount() == 0){
+                    //show message
+                    showMessage("Error", "Nothing Found");
+                    return;
+                }
+
+                StringBuffer buffer = new StringBuffer();
+                while (res.moveToNext()){
+                    buffer.append("Id : " + res.getString(0) + "\n");
+                    //buffer.append("Firstname : " + res.getString(1) + "\n");
+                    //buffer.append("Lastname : " + res.getString(photo) + "\n");
+                    buffer.append("Email : " + res.getString(2) + "\n");
+                    buffer.append("Password : " + res.getString(3) + "\n\n");
+                }
+
+                //Show all data
+                showMessage("Data", buffer.toString());
+            }
+        });
+    }
+     */
+    public void showMessage(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
+    }
+
+    //Save the users login info
+    public void saveInfo(View view){
+        SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+
+        editor.putString("username", editTextEmail.getText().toString());
+        editor.putString("password", editTextPassword.getText().toString());
+        editor.apply();
+
+        Toast.makeText(this, "Saved!", Toast.LENGTH_LONG).show();
+    }
+
+    //Priint out the saved data
+    public void displayData(View view){
+        SharedPreferences sharedPref = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+
+        String name = sharedPref.getString("username", "");
+        String pw = sharedPref.getString("password", "");
+
+        buttonRememberMe = (Button) findViewById(R.id.buttonRememberMe);
+        saveText = (TextView) findViewById(R.id.savedText);
+
+        saveText.setText(name + " " + pw);
+    }
 
 }

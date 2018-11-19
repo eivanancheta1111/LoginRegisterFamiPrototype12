@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@color/bluelight"
+    android:fitsSystemWindows="true">
 
     <TextView
         android:id="@+id/textView4"
@@ -43,25 +45,27 @@
         android:layout_below="@+id/textView4"
         android:layout_centerHorizontal="true"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textAlignment="center" />
 
     <RadioGroup
         android:id="@+id/mutualFundTypeRadioGroup"
-        android:layout_width="282dp"
+        android:layout_width="wrap_content"
         android:layout_height="138dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="35dp"
 
 
         android:layout_marginTop="157dp">
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/radioButton4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SALBF (Save and Learn Balanced Fund)"
+            android:checked="true"
+            android:text="SAFIF (Save and Learn Fixed Income Fund)"
             android:textSize="14sp" />
 
         <RadioButton
@@ -73,20 +77,21 @@
             android:textSize="14sp" />
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/radioButton3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="SAFIF (Save and Learn Fixed Income Fund)"
+            android:text="SALBF (Save and Learn Balanced Fund)"
             android:textSize="14sp" />
     </RadioGroup>
+
     <EditText
         android:id="@+id/investorAmountTextfield"
         android:layout_width="wrap_content"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="193dp"
+        android:layout_marginBottom="179dp"
         android:ems="10"
         android:inputType="number" />
 

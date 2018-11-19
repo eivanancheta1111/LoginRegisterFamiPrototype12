@@ -48,12 +48,7 @@ public class InputActivity extends AppCompatActivity {
                 String Result = (Double.toString(sum));
 
 
-                if (
-                        (Name.equals("") && !(Amount.equals("")) ) ||
-                                (!(Name.equals("")) && Amount.equals("") ) ||
-                                ( Name.equals("") &&  Amount.equals("") )
-                        )
-                {
+                if (Name.equals("") || Amount.equals("")){
                     Toast.makeText(getApplicationContext(), "Fill the form", Toast.LENGTH_LONG).show();
                 }
                 else if(

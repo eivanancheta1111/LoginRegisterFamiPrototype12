@@ -113,6 +113,16 @@ public class SqliteHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor getUsername(String email){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.query(TABLE_USERS,// Selecting Table
+                new String[]{KEY_USER_NAME},//Selecting columns want to query
+                KEY_EMAIL + "=?",
+                new String[]{email},//Where clause
+                null, null, null);
+        return res;
+    }
+
     public boolean isEmailExists(String email) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_USERS,// Selecting Table
