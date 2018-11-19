@@ -75,18 +75,6 @@
             android:text="RememberMe"
             android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/buttonView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorAccent"
-
-            android:onClick="displayData"
-            android:text="View"
-            android:textColor="@android:color/white" />
-
         <TextView
             android:id="@+id/textViewCreateAccount"
             android:layout_width="match_parent"
